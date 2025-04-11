@@ -5,28 +5,33 @@ class DatabaseConnection {
     private static $pdo = null;
     public static $conn = null; // 模擬舊的 $conn 物件
     
-    public static function initialize() {
-        try {
-            // PostgreSQL 連接資訊
-            $host = "postgresql://myuser:2BeqE2rDtkKP5pTUWRSKWOT6eiZDcj5a@dpg-cvsa2fc9c44c739t4uk0-a.oregon-postgres.render.com/mydb_d092"; // 使用外部 URL 的主機部分
-            $dbname = "mydb_d092";
-            $user = "myuser";
-            $password = "2BeqE2rDtkKP5pTUWRSKWOT6eiZDcj5a";
-            $port = "5432";
-            // 建立 PDO 連接
-            $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
-            self::$pdo = new PDO($dsn, $user, $password);
-            self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            // 建立相容層，模擬 mysqli 物件
-            self::$conn = new MySQLiCompatibilityLayer(self::$pdo);
-            
-            return true;
-        } catch (PDOException $e) {
-            error_log("資料庫連接錯誤: " . $e->getMessage());
-            return false;
-        }
+public static function initialize() {
+    try {
+        // PostgreSQL 連接資訊
+        $host = "dpg-cvsa2fc9c44c739t4uk0-a.oregon-postgres.render.com";
+        $dbname = "mydb_d092";
+        $user = "myuser";
+        $password = "2BeqE2rDtkKP5pTUWRSKWOT6eiZDcj5a";
+        $port = "5432";
+        
+        // 建立 PDO 連接
+        $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
+        self::$pdo = new PDO($dsn, $user, $password);
+        self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // 建立相容層，模擬 mysqli 物件
+        self::$conn = new MySQLiCompatibilityLayer(self::$pdo);
+        
+        error_log("資料庫連接成功初始化");
+        return true;
+    } catch (PDOException $e) {
+        error_log("資料庫連接錯誤: " . $e->getMessage());
+        self::$pdo = null;
+        self::$conn = null;
+        return false;
     }
+}
+
     
     public static function getPDO() {
         if (self::$pdo === null) {
