@@ -1,0 +1,342 @@
+/* others */
+html{
+    /* scroll-behavior:smooth; 讓我網頁內的滑動平順(連結) */
+    height: 100%;
+}
+body {
+
+    height: 100vh;
+    font-family: 'Roboto',sans-serif;   
+    /* background-image:url("/../imgbackground.webp") ; */
+    background-color: #e0ccae;
+    background: linear-gradient(to right, #f8d9ab, #fdeed7);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto',sans-serif !important;
+  letter-spacing: 4px;
+}
+
+input[type=text],input[type=password],textarea {
+    border: 1.7px solid black;
+    border-radius: 4px;
+    background: none;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  input[type=text]:focus,input[type=password]:focus,textarea:focus {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2.2px solid black;
+  }  
+
+
+/* preloader *********************************************************************************************************/
+/* preloader */
+#preloader{
+    background: #FFFFFF url(../img/preloader.webp) no-repeat center;
+    background-size: 20%;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    opacity: 1;
+    transition: none;
+    @media (max-width:600px) {
+        background-size: 50%;
+    }
+    @media (max-width:400px) {
+        background-size: 60%;
+    }
+}
+
+
+/* Navbar *********************************************************************************************************/
+/* 滑到Menu 顯示圖片 */
+.w3-top{
+    a{
+        letter-spacing:3px !important;
+    }
+    
+}
+#top-title:hover{
+    background-color:#d1a15a!important
+}
+
+
+
+#body-area{
+    margin-top: 100px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+}
+
+
+#singup-form{
+    height: auto;
+    width : 500px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px auto;
+
+    
+}
+
+.error{
+    background: #FFD2D2;
+    color: #D8000C; 
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    width : 100%;
+    margin: 20px auto;
+}
+
+form{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    input{
+        margin-left: auto;
+        height: 35px    ;
+        width : 220px;
+        
+    }
+    p.input{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        span{
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        @media (max-width:400px) {
+            flex-direction: column;
+            gap: 10px;
+            input{
+                margin-left: 0px;
+            }
+            &#ask{
+                flex-direction: row;
+                gap: none;
+            }
+            
+        }
+    }
+    button{
+        height: 30px;
+        width:80px;
+        font-size: 15px;
+    }
+
+}
+
+
+
+
+
+
+/* 特殊的button */
+/* 基礎按鈕樣式：結合原始 .ani_button 和新 .btn 的設定 */
+.ani_button{
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* 確保動畫不會超出按鈕範圍 */
+    min-width: 130px;
+    background-color: rgba(255, 255, 255, 0.904); /* 設置背景為白色 */
+    color: black; /* 字體顏色設為黑色 */
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;  
+    justify-content: center;  
+    cursor: pointer;
+    justify-self: center;
+    overflow: hidden;
+    border: 1px solid #FFFFFF; /* 邊框為白色 */
+    transition: background-color 0.4s, border 0.4s; /* 加入 .btn 樣式的過渡效果 */
+}
+
+.ani_button span.edge {
+    position: absolute;
+    background-color: black;
+}
+.ani_button div,
+.ani_button:before {
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;  
+    justify-content: center;  
+    height: 100%;
+}
+
+/* hover 狀態下的效果 */
+.ani_button:before {
+    content: attr(data-hover);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translate(-100%, 0);
+    display: flex;
+    align-items: center;  
+    justify-content: center;  
+}
+
+button .ani_button .text {
+    display: inline; /* 將 <div> 改為行內元素，避免撐開按鈕 */
+    transition: all 0.3s ease-in-out;
+}
+.text{
+    transition: transform 0.3s ease-in-out;
+}
+
+.ani_button:hover .text {
+
+    transform: translate(130px, 0);  
+}
+
+.ani_button:hover:before {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all 0.3s ease-in-out;
+}
+
+/* 為按鈕邊緣添加動畫效果 */
+.ani_button span.edge {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: black;
+}
+
+.ani_button span:nth-child(5) {
+    width: 1px;
+    left: 0;
+    bottom: 0;
+}
+
+.ani_button span:nth-child(2) {
+    height: 1px;
+    left: 0;
+    top: 0;
+}
+
+.ani_button span:nth-child(3) {
+    width: 1px;
+    right: 0;
+    top: 0;
+}
+
+.ani_button span:nth-child(4) {
+    height: 1px;
+    right: 0;
+    bottom: 0;
+}
+
+/* 邊框動畫 */
+.ani_button:hover span:nth-child(5) {
+    animation: move1 1500ms infinite ease;
+}
+
+.ani_button:hover span:nth-child(2) {
+    animation: move2 1500ms infinite ease;
+}
+
+.ani_button:hover span:nth-child(3) {
+    animation: move3 1500ms infinite ease;
+}
+
+.ani_button:hover span:nth-child(4) {
+    animation: move4 1500ms infinite ease;
+}
+
+/* 邊框動畫定義 */
+@keyframes move1 {
+    0% { height: 100%; bottom: 0; }
+    54% { height: 0; bottom: 100%; }
+    55% { height: 0; bottom: 0; }
+    100% { height: 100%; bottom: 0; }
+}
+
+@keyframes move2 {
+    0% { width: 0; left: 0; }
+    50% { width: 100%; left: 0; }
+    100% { width: 0; left: 100%; }
+}
+
+@keyframes move3 {
+    0% { height: 100%; top: 0; }
+    54% { height: 0; top: 100%; }
+    55% { height: 0; top: 0; }
+    100% { height: 100%; top: 0; }
+}
+
+@keyframes move4 {
+    0% { width: 0; right: 0; }
+    55% { width: 100%; right: 0; }
+    100% { width: 0; right: 100%; }
+}
+
+/* 點擊時水波紋效果 */
+.ani_button {
+    position: relative;
+    overflow: hidden; 
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgb(202, 201, 202)!important; 
+    transform: scale(0);
+    animation: rippleAnimation 0.6s linear; 
+}
+
+@keyframes rippleAnimation {
+    to {
+        transform: scale(4); 
+        opacity: 0;
+       }}
+
+
+
+
+
+
+
+
+
+
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/

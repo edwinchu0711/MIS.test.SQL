@@ -1,0 +1,954 @@
+/* others */
+html{
+    /* scroll-behavior:smooth; 讓我網頁內的滑動平順(連結) */
+}
+body {
+    font-family: 'Roboto',sans-serif;   
+    /* background-image:url("img/background.webp") ;  */
+    /* background-color: rgb(240, 236, 230);
+    background-color: #e0ccae;
+    background: linear-gradient(to right, #f8d9ab, #fdeed7);  */
+    background-color: rgb(255, 255, 255);
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    
+    
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto',sans-serif !important;
+  letter-spacing: 4px;
+}
+/****************************navbar******************/
+#navbar {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+#navbar.visible {
+    transform: translateY(0);
+}
+
+
+
+
+
+/* 為了避免突然的閃動，可以加入一個初始狀態 */
+#navbar.init {
+    transition: none;
+}
+
+
+header > img{
+    opacity: 90%;
+}
+
+
+/* preloader *********************************************************************************************************/
+/* preloader */
+#preloader{
+    height: 100%;   
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 1s ease;
+    background-size: 80% auto !important;
+    @media (max-width:600px) {
+        background-size: 90% auto !important;
+    } 
+}
+
+
+#header{
+    
+    position: relative;
+
+}
+#header-img{
+    background-size: cover; 
+    background-position: center;
+    width : 100%;
+}
+#headerWhite{
+    z-index: 2;
+    position: absolute;
+    top:0;
+    left:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #header-logo{
+        width : 30%;
+        aspect-ratio: 3147/ 646; 
+        margin-top: 8%;
+        align-self: center;
+        background-size: cover;
+        transform: translateY(-50px);
+        opacity: 0;
+        @media (min-width:500.01px) and (max-width:800px) {
+            margin-top: 14%;
+        }
+        @media (max-width:500px) {
+            width: 60%;
+            margin-top: 20%;
+        }
+    }
+    #header-line{
+        margin-top: 4%;
+        width: 60%;
+        aspect-ratio: 1762/ 50; 
+        transform: translateY(-50px);
+        opacity: 0;
+        @media (max-width:500px) {
+            width: 85%;
+        }
+    }
+}
+#index-button-area{
+    display: flex;
+    gap : 2%;
+    row-gap: calc(8% + 10px);
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 6%;
+    height: 30%;
+    width: 80%;
+    align-items: center;
+    align-content: center;
+    justify-self: center;
+    justify-content: center;
+    box-sizing:content-box;
+    .index-button{
+
+        opacity: 0;
+        position: relative;
+        box-sizing: border-box;
+        justify-self: center;
+        width: 30%;
+        height: 100%;
+        min-width: 150px;
+
+        border: 5px solid #5A3E2B;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .button-text{
+            margin-top: auto;
+            justify-self: flex-end;
+            font-size: 1.6vw;
+            
+            padding-bottom: auto;
+        }
+        .introduction{
+            position: absolute;
+            top : -10%;
+            font-size: (0.6vw + 8px);
+            
+        }
+
+    }
+    #first-part , #second-part{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-around;
+        gap : 5%;
+        box-sizing: border-box;
+    }
+}
+
+.introduction{
+    visibility: hidden;
+    color :#2e2e2e;
+}
+.index-button:hover{
+    transform: scale(1.13);
+    cursor: pointer;
+    .introduction{
+        visibility: visible;
+        
+    }
+}
+.button-icon{
+    display: block;
+    position: relative;
+    width:80%;
+    height: 60%;
+    justify-self: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 5%;
+
+
+    #newPost{
+        width: 100%;
+        aspect-ratio: 1523 / 426; /* 設定寬高比例 */
+        overflow: hidden; /* 確保內容不超出容器 */
+        background-size: cover;
+    }
+    #search{
+
+        width: 55%;
+        aspect-ratio: 834 / 871; /* 設定寬高比例 */
+        overflow: hidden; /* 確保內容不超出容器 */
+        background-size: cover;
+    }
+    #login , #mypost{
+        width: 60%;
+        aspect-ratio: 766 / 728; /* 設定寬高比例 */
+        overflow: hidden; /* 確保內容不超出容器 */
+        background-size: cover;
+    }
+    #aboutUs{
+        width: 85%;
+        aspect-ratio: 1062 / 1072; /* 設定寬高比例 */
+        overflow: hidden; /* 確保內容不超出容器 */
+        background-size: cover;
+    }
+}
+
+.circle-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: circle(0% at 50% 50%);
+    background: #fff;
+    z-index: 11;
+}
+
+#contact{
+    padding-top: 50px;
+}
+/* Instagram link to Sunny */
+.contact-header {
+    display: flex; 
+    align-items: center;
+}
+
+ .instagram-link {
+    text-decoration: none; 
+    margin-left: 8px;
+ }
+
+.instagram-icon {
+    width: 28px; 
+    height: 28px; 
+    align-items: center;
+}
+
+/* 懸停效果 */
+.instagram-link:hover .instagram-icon {
+    opacity: 0.8; /* 懸停時透明度變低 */
+}
+
+
+/* 特殊的button */
+/* 基礎按鈕樣式：結合原始 .ani_button 和新 .btn 的設定 */
+.ani_button{
+    position: relative;
+    min-width: 200px;
+    background-color: black; /* 設置背景為黑色 */
+    color: white; /* 字體顏色設為白色 */
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;  
+    justify-content: center;  
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid #FFFFFF; /* 邊框為白色 */
+    transition: background-color 0.4s, border 0.4s; /* 加入 .btn 樣式的過渡效果 */
+}
+
+
+.ani_button div,
+.ani_button:before {
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;  
+    justify-content: center;  
+    height: 100%;
+}
+
+/* hover 狀態下的效果 */
+.ani_button:before {
+    content: attr(data-hover);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translate(-100%, 0);
+    display: flex;
+    align-items: center;  
+    justify-content: center;  
+}
+
+.ani_button:hover div {
+    opacity: 0;
+    transform: translate(100%, 0);
+}
+
+.ani_button:hover:before {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* 為按鈕邊緣添加動畫效果 */
+.ani_button span {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: black;
+}
+
+.ani_button span:nth-child(5) {
+    width: 1px;
+    left: 0;
+    bottom: 0;
+}
+
+.ani_button span:nth-child(2) {
+    height: 1px;
+    left: 0;
+    top: 0;
+}
+
+.ani_button span:nth-child(3) {
+    width: 1px;
+    right: 0;
+    top: 0;
+}
+
+.ani_button span:nth-child(4) {
+    height: 1px;
+    right: 0;
+    bottom: 0;
+}
+
+/* 邊框動畫 */
+.ani_button:hover span:nth-child(5) {
+    animation: move1 1500ms infinite ease;
+}
+
+.ani_button:hover span:nth-child(2) {
+    animation: move2 1500ms infinite ease;
+}
+
+.ani_button:hover span:nth-child(3) {
+    animation: move3 1500ms infinite ease;
+}
+
+.ani_button:hover span:nth-child(4) {
+    animation: move4 1500ms infinite ease;
+}
+
+/* 邊框動畫定義 */
+@keyframes move1 {
+    0% { height: 100%; bottom: 0; }
+    54% { height: 0; bottom: 100%; }
+    55% { height: 0; bottom: 0; }
+    100% { height: 100%; bottom: 0; }
+}
+
+@keyframes move2 {
+    0% { width: 0; left: 0; }
+    50% { width: 100%; left: 0; }
+    100% { width: 0; left: 100%; }
+}
+
+@keyframes move3 {
+    0% { height: 100%; top: 0; }
+    54% { height: 0; top: 100%; }
+    55% { height: 0; top: 0; }
+    100% { height: 100%; top: 0; }
+}
+
+@keyframes move4 {
+    0% { width: 0; right: 0; }
+    55% { width: 100%; right: 0; }
+    100% { width: 0; right: 100%; }
+}
+
+/* 點擊時水波紋效果 */
+.ani_button {
+    position: relative;
+    overflow: hidden; 
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgb(202, 201, 202)!important; 
+    transform: scale(0);
+    animation: rippleAnimation 0.6s linear; 
+}
+
+@keyframes rippleAnimation {
+    to {
+        transform: scale(4); 
+        opacity: 0;
+       }}
+
+
+
+/***************************************留言板區域******************************/
+input{
+    border-radius: 5px;
+    border: 2px solid #dcd9bb;
+}
+button{
+    border-radius: 5px;
+}
+
+
+
+
+#message-area{
+    width: 100%; /* 設置容器的寬度 */
+   
+    border: 1px solid #ccc; /* 可選：添加邊框以便視覺上區分 */
+    padding: 0px 0px 10px 00px; /* 可選：添加內邊距 */
+    
+    white-space: normal; /* 確保文字自動換行 */
+    overflow-wrap: break-word;
+    border: 2px solid #dcd9bb;
+    border-radius: 7px;
+    background: #f5f0e1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+#message-bar-title p {
+    font-size: 20px !important;
+
+}
+
+#message-bar{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    border-radius: 7px 7px 0px 0px;
+    background-color: #eddba5;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        font-size: 17px;
+        margin: 0px 5px;
+    }
+    .message-size-button{
+        margin : 0px 5px;
+        text-align: center;
+        background-color: #faba67e2;
+        border-radius:3px;
+        p{
+            user-select: none;
+            font-size: 15px;
+        }
+
+    }
+    .message-size-button.show{
+        background-color: #ff992b;
+    }
+
+}
+#message-container.small{
+    .user-name{font-size: 18px;}
+    .message{font-size: 14px;}
+    hr{margin-top: 8px; margin-bottom: 8px; }
+    
+}
+
+#message-container.medium{
+    .user-name{font-size: 22px;}
+    .message{font-size: 18px;}
+    hr{margin-top: 18px; margin-bottom: 18px; }
+}
+
+#message-container.large{
+    .user-name{font-size: 26px;}
+    .message{font-size: 22px;}
+    hr.Comment-board-hr{margin-top: 26px; margin-bottom: 26px; }
+}
+
+.old-message {
+    margin-left: 10px;
+    padding-right: 20px;
+    border-radius: 7px;
+    width: auto; /* 設置容器的寬度 */
+    height: 500px; /* 設置容器的高度 */
+    overflow-y: auto; /* 垂直滾動條 */
+    overflow-x: hidden; /* 隱藏水平滾動條，根據需要調整 */
+    white-space: normal; /* 確保文字自動換行 */
+    overflow-wrap: break-word;
+    background: #f5f0e1;
+
+    p{
+        margin-block: 0px;
+        
+    }
+    .post{
+        display: block;
+        max-width : 100%;
+        margin-bottom: 5px;
+        margin-top: 20px;
+        padding-bottom:10px;
+        padding-top:10px;
+        background: #f5f0e1;
+
+        border-radius: 7px;
+        transition: background 0.4s ease;
+    }
+    .post:hover {
+        background: #e9d8a3;
+        transition: none;
+    }
+    .user-name{
+        font-size:22px ;
+        margin-left: 20px;
+
+    }
+    .user-name::first-letter , .message::first-letter{ /*確保留言板第一個字是大寫*/
+        text-transform: uppercase;
+    }
+    .message{
+        margin-left: 60px;
+        margin-right:15px;
+        font-size: 18px;
+        
+
+    }
+}
+
+#Comment-board{
+    position: relative;
+    display: block;
+}
+
+.Comment-board-hr{
+    border:none;
+    height: 1px;
+    margin : 20px 0px;
+    background: linear-gradient(to right, rgba(50, 161, 206, 0.12), rgba(50, 161, 206, 0.5), rgba(50, 161, 206, 0.12));
+}
+
+.form-name{
+    min-height: 40px;
+}
+.form-message{
+    width :90%;
+    min-height: 40px;
+}
+
+
+.Comment-board-form{
+    input{
+        font-size: large;
+    }
+    button{
+        margin-top: 10px;
+        width: 80px;
+        font-size: large;
+    }
+    p{
+        margin-block: 15px;
+    }
+}
+
+#Comment-board-submit{
+    margin-top: 0px !important;
+}
+
+
+
+
+
+
+/***************************食物跑馬燈*********************************/
+
+#food_marquee{
+    width : 100% ;
+    height: 700px;
+    max-height: 90vh;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top:0;
+    left:0;
+    /* background: rgba(250, 178, 44, 0.712); */
+    #marquee_title{
+        margin-top: 5%;
+        margin-bottom: 0;
+        opacity: 0;
+        align-self: center;
+        font-size: 35px;
+        color : black;
+        letter-spacing : 6px;
+    }
+    #all_cards{
+        position: relative;
+        overflow-x: visible;
+        height: 80%;
+        display: flex;
+        flex-wrap: nowrap;
+        gap : 3%;
+        justify-content: left;
+        transform: translate(0.013%);
+    }
+}
+
+
+
+
+.dish_card{
+
+    opacity: 0; /* 初始完全透明 */
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dish_card:hover{
+    cursor: pointer;
+}
+.dish_img{
+    margin-top: 8%;
+    justify-self: flex-start;
+    position: relative;
+    background-size: cover; /* 圖片覆蓋整個區域，保持比例 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 防止圖片重複 */
+    border-radius: 8px;
+    border : 3px solid white;
+    transition: transform 0.2s;
+}
+
+
+.marquee_change_button{
+    z-index: 2;
+    opacity: 0;
+    bottom:5%;
+    @media (min-width: 700px) and (max-width: 899px) {
+        bottom: 20px; 
+    }
+    @media (min-width: 500px) and (max-width: 699.99px) {
+        bottom: 30px;
+    }
+    @media (min-width: 400px) and (max-width: 499.99px) {
+        bottom: 40px;
+    }
+    @media (max-width: 399.99px) {
+        bottom: 50px;
+    }
+}
+#left_button{
+    position: absolute;
+    left:1%;
+
+
+}
+#right_button{
+    position: absolute;
+    right: 1%;
+
+
+}
+#all_card a{
+    height: 100%;
+}
+.marquee_change_button:hover{
+    cursor: pointer;
+}
+/* .connectLine{
+    transform-origin: top right;
+    
+    transition: transform 0.2s;
+    height: 30px;
+    width: 1px;
+    border-right: 3px dashed white;
+} */
+.dish_name{
+    transform-origin: top center;
+    font-size: 18px;
+    background: rgba(212, 143, 16, 0.959);;
+    border-radius: 5px;
+    border : 3px solid white;
+    padding:10px;
+    transition: transform 0.2s;
+    width: auto;
+    transform: translateY(-20px);
+}
+.dish_name_p{
+    
+    color: white;
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    text-align: center;
+}
+
+#left_right_button {
+    
+    position: relative;
+    height: 18%; /* 移除 !important，通常不需要 */
+    width: 100%;
+    bottom: 10px;
+    justify-self: center;
+    
+}
+
+
+
+#changeBackground{
+    /* background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(248, 203, 144, 0.928));
+    height: 60px;
+    width: 100%; */
+}
+
+
+
+
+/********************anima.js*********************/
+#NewPost-area {
+    position: relative;
+  }
+  .row {
+    position: relative;
+    height: 17.5px; /* 減少高度，與方塊一致 */
+  }
+  .el {
+    width: 0px;
+    height: 17.5px;
+    background: rgba(248, 203, 144, 0.928);
+    position: absolute;
+  }
+  /* 奇數列靠左 */
+  .row:nth-child(odd) .el {
+    left: 0;
+  }
+  /* 偶數列靠右 */
+  .row:nth-child(even) .el {
+    left: 0;
+  }
+
+  a {
+    text-decoration: none; /* 取消底線 */
+}
+
+
+
+
+/********************search********************************/
+
+#search-index-spare {
+    position: fixed;
+    display: none; /* 初始狀態為隱藏 */
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: 15; /* 確保在最上層 */
+    padding-top: 80px;
+}
+
+.search-index-container {
+    width: 80%;
+    height: 90%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.search-index-header {
+    position: relative;
+    padding: 20px;
+    padding-bottom: 10px !important;
+    
+    display: flex;
+    align-items: center;
+}
+
+#search-index-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-close-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.search-index-results {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 20px;
+    &::-webkit-scrollbar {
+        height: 4px;
+        width:  4px;
+        display: block;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #c1c1c1;
+        border-radius: 4px;
+    }
+}
+
+.index-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #d1a15a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.search-result-image {
+    width: 100%; /* 或特定寬度 */
+    height: 200px; /* 或特定高度 */
+    overflow: hidden;
+}
+
+.search-output-img {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.filter-tags {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    span{
+        white-space: nowrap;
+    }
+}
+
+.filter-tag {
+    padding: 4px 12px;
+    border-radius: 16px;
+    background-color: #e9e9e9;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-tag:hover {
+    background-color: #ddd;
+}
+
+.filter-tag.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.search-index-filters{
+    margin: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+
+
+
+
+
+
+/* 只在真的需要捲動時才顯示捲軸 */
+.filter-tags::-webkit-scrollbar {
+    height: 4px;
+    display: block;
+}
+
+.filter-tags::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.filter-tags::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 4px;
+}
+
+.filter-tag {
+    padding: 6px 14px;
+    border-radius: 16px;
+    background-color: #f0f0f0;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    border: 1px solid #e0e0e0;
+}
+
+.filter-tag:hover {
+    background-color: #e8e8e8;
+    transform: translateY(-1px);
+}
+
+.filter-tag.active {
+    background-color: #4285f4;
+    color: white;
+    border-color: #4285f4;
+}
+
+@media (max-width: 768px) {
+    .filter-tags {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+
+
+.search-close-btn{
+    top:30px !important;
+}
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/

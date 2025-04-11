@@ -1,0 +1,749 @@
+/* others */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+textarea{
+    resize: vertical; /* 僅允許垂直調整大小 */
+    width: 270px; 
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: 'Roboto',sans-serif;   
+    /* background-image:url("/../imgbackground.webp") ; */
+    background-image: linear-gradient(to right, #f8d9ab, #fdeed7); /* 設置漸變背景 */
+    background-size:cover !important; /* 確保背景圖案覆蓋整個區域 */
+    background-attachment: fixed;
+
+    
+
+    display: flex;
+    flex-direction: column;
+    
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto',sans-serif !important;
+  letter-spacing: 4px;
+}
+
+
+.user-list{ /* menu的清單範圍 */
+    display:flex;
+    position:fixed;
+    flex-direction: column;
+    z-index: 2;
+    background-color: #f5e3c3;
+    /* background: linear-gradient(to right, #ddbb88, #ffffff); 從奶茶色到白色的漸層 */
+    margin-right: 20px;
+    margin-left: 20px;
+    /* 以下是拉下動畫 */
+    visibility: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+    transition: clip-path 0.5s ease, visibility 0.3s ease; 
+    letter-spacing: 1.8px; /* 增加字母之間的間距 */
+
+    
+    
+}
+#user-list.show{  /* 當class裡多了show 就會收回 */
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+#user-button-area{ /* menu按鈕+menu清單的範圍 */
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding : 0px ;
+    align-items: center;
+}
+
+#preloader{
+    background: #FFFFFF url(../img/preloader.webp) no-repeat center;
+    background-size: 20%;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    opacity: 1;
+    transition: none;
+    @media (max-width:600px) {
+        background-size: 50%;
+    }
+    @media (max-width:400px) {
+        background-size: 60%;
+    }
+}
+
+
+
+
+
+
+
+/* Navbar *********************************************************************************************************/
+/* 滑到Menu 顯示圖片 */
+.w3-top{
+    a{
+        letter-spacing:3px !important;
+    }
+    
+}
+#top-title:hover{
+    background-color:#d1a15a!important
+}
+
+
+
+#body-area{
+    margin-top: 100px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+    width : 100vw;
+    height: auto;
+}
+
+#setting-area {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* 確保子元素從頂部開始對齊 */
+    width: 100%;
+    height: auto; /* 自動適應內容高度 */
+    margin-bottom : 50px;
+}
+
+
+
+
+#dividingLine{
+    height: 90%;
+    width: 3px;
+    position: relative;
+    max-height: 1000px;
+    border: none;
+    background-color: black;
+    margin : 0px 0px 100px 0px;
+    padding-bottom: 0px;
+    
+}
+
+#dividingLine_wide{
+    height: 3px;
+    width: 90%;
+    position: absolute;
+    top : 275px;
+    max-height: 1000px;
+    border: none;
+    background-color: black;
+    margin : 0px 0px 100px 0px;
+    padding-bottom: 0px;
+}
+
+
+#setting-list{
+
+    width : 20% ;
+    display : flex ;
+    flex-direction: column;
+    align-items: flex-end;
+    letter-spacing: 1.4px;
+    
+    #setting-title{
+        font-size: 30px;
+        margin : 0px 20px;
+        margin-bottom: 40px;
+        letter-spacing: 1.4px;
+    }
+    #setting-button-area{
+        display : flex ;
+        flex-direction: column;
+        align-items: flex-end;
+        letter-spacing: 1.4px;
+    }
+}
+.setting-button{
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+    margin : 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    
+    border-radius: 8px;
+    padding:5px;
+    border:2px solid #E6B566;
+    p{
+        
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+    }
+}
+.setting-button:hover{
+    cursor: pointer;
+}
+
+
+#setting-content{
+    display: block;
+    margin-left: 70px;
+    width : 700px;
+    max-width: 100%;
+
+}
+
+.setting-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%
+}
+
+input[type=text],input[type=password],textarea {
+    border: 1.7px solid black;
+    border-radius: 4px;
+    background: none;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  input[type=text]:focus,input[type=password]:focus,textarea:focus {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2.2px solid black;
+  }  
+
+#password-setting{
+    margin-bottom: 200px;
+}
+#password-form , #profile-form{
+    position: inherit;
+    height: auto;
+    width : 600px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px;
+
+    margin-top: 50px auto;
+
+    
+
+    
+}
+#profile-form{
+    width : 700px;
+}
+
+
+/*****************************profile的圖片*********************************************/
+#backgroundContainer {
+    width: 100%;
+    height: 300px;
+    background-size: cover; /* 縮小並裁剪圖片 */
+    background-position: center; /* 圖片居中 */
+    background-repeat: no-repeat; /* 不重複顯示 */
+    border: 3px solid #f5e9d2; /* 米色邊框 */
+    border-radius: 12px;        /* 圓角 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 輕微陰影 */
+}
+
+#Background-Container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+
+}
+
+.backgroundOverlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    border-radius: 5px;
+
+    background-color: rgba(0, 0, 0, 0.523);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+#Background-Container:hover .backgroundOverlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+
+#profileImg{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background-color: white;
+    border: 5px solid rgb(255, 255, 255); /* 暖金色邊框 */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        background-size: cover; /* 縮小並裁剪圖片 */
+    background-position: center; /* 圖片居中 */
+    background-repeat: no-repeat; /* 不重複顯示 */
+
+}
+.profile-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    bottom:100px;
+    margin-bottom: -80px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.523);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.profile-container:hover .overlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+.error{
+    background: #FFD2D2;
+    color: #D8000C; 
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    width : 100%;
+    margin: 20px auto;
+}
+
+.form-input{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap : 20px;
+    row-gap: 5px;
+    span{
+        font-size: 20px;
+    }
+}
+@media (max-width:530px){
+    form{
+        input{
+            margin-left : 0px !important;
+        }
+    }
+    .form-input{
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+}
+
+form{
+    justify-content: space-between;
+    align-items: center;
+    
+    textarea{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    input{
+        margin-left: auto;
+        height: 35px    ;
+        width : 270px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        
+    }
+    p{
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        span{
+            margin-right: 20px;
+            font-size: 20px;
+        }
+    }
+    button{
+        height: 30px;
+        width:auto;
+        margin: 20px 0px;
+        font-size: 15px;
+    }
+
+}
+#user-button{
+    letter-spacing: 1.4px; /* 增加字母之間的間距 */
+}
+
+/*****************************************BGchangeIMG**********************************/
+#BGchangeIMG{
+    z-index: 2;
+    display:none;
+    position:fixed;
+    bottom:0;
+    right:0;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width:100%;
+    background-color: rgba(0, 0, 0, 0.351);
+
+}
+#BGexit{
+    justify-self: flex-end;
+    align-self: flex-start;
+    margin-top: calc(3vh + 50px);
+    margin-left: auto;
+    margin-right : 10px;
+
+    width: 50px;
+    height: 50px;
+
+}
+#BGchoseIMG{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top:10%;
+    width: 70%;
+    height: 80%;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    .BGphoto-compare{
+            background-size: cover; /* 縮小並裁剪圖片 */
+        background-position: center; /* 圖片居中 */
+        background-repeat: no-repeat; /* 不重複顯示 */
+        width: 100%;
+        
+    }
+    #BGarrow{
+        transform: rotate(90deg);
+        width: 5%;
+        height: auto;
+    }
+}
+
+
+.BGcompare{
+    display: flex;
+    gap : 5%;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#BGphoto-compare{
+    display: flex;
+    background-color: #f5f5f5;
+    justify-content: center;
+    width: 100%;
+    p{
+        font-size: 21px;
+    }
+}
+
+#BGchangeLine{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#BGchangeLine label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d4a373; /* 柔和的橙棕色 */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* 添加過渡效果 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
+
+#BGchangeLine label:hover {
+    background-color: #c58a5f; /* 懸停時稍微加深 */
+}
+
+#BGchangeLine #changeBGbutton{
+    display: flex;
+    height: 100% !important;
+    margin : 0 0;
+    margin-left: 20px;
+    display: inline-block;
+    padding: 10px 20px 10px 20px;
+    background-color: #24ab22; /* 柔和的橙棕色 */
+    color: white;
+    border-radius: 5px;
+    border:none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* 添加過渡效果 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    p{
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+    }
+}
+#BGchangeLine #changBGbutton:hover {
+    background-color: #208d1e; /* 懸停時稍微加深 */
+}
+
+
+
+
+
+
+/*********************************changeIMG******************************/
+#changeIMG{
+    display:none;
+    position:fixed;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width:100%;
+    background-color: rgba(0, 0, 0, 0.351);
+
+}
+#exit{
+    justify-self: flex-end;
+    align-self: flex-start;
+    margin-top: calc(3vh + 50px);
+    margin-left: auto;
+    margin-right : 10px;
+
+    width: 50px;
+    height: 50px;
+
+}
+#choseIMG{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 70%;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    img , .photo-compare{
+        background-size: cover; 
+
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+    }
+}
+
+
+.compare{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#photo-compare{
+    display: flex;
+    background-color: #f5f5f5;
+    justify-content: center;
+    width: 100%;
+    p{
+        font-size: 21px;
+    }
+}
+
+input[type="file"]#profileIMGbutton,input[type="file"]#BGIMGbutton {
+    display: none;
+}
+
+#changeLine{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#changeLine label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d4a373; /* 柔和的橙棕色 */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* 添加過渡效果 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
+
+#changeLine label:hover {
+    background-color: #c58a5f; /* 懸停時稍微加深 */
+}
+
+#changeLine #changeIMGbutton{
+    display: flex;
+    height: 100% !important;
+    margin : 0 0;
+    margin-left: 20px;
+    display: inline-block;
+    padding: 10px 20px 10px 20px;
+    background-color: #24ab22; /* 柔和的橙棕色 */
+    color: white;
+    border-radius: 5px;
+    border:none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* 添加過渡效果 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    p{
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+    }
+}
+#changeLine #changeIMGbutton:hover {
+    background-color: #208d1e; /* 懸停時稍微加深 */
+}
+
+.photo-compare{
+    border : solid 1.5px rgb(51, 50, 50);
+
+}
+img.photo-compare{
+    border: none;
+}
+#photo-arrow{
+    margin : 15px 0px;
+}
+
+
+/*************************按鈕**********************************/
+/* ---------- Useful Button styling ---------- */
+
+.button{
+    position: relative;
+    justify-self: center;
+    background-color: rgb(210, 166, 94);
+    padding : 8px 16px !important;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    padding: 0.8em 1.8em;
+    cursor:pointer;
+    user-select:none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    padding-block-end :0px;
+    padding-block-start:0px;
+    border:rgb(226, 180, 106);
+  }
+  
+  .button:hover {
+    transition-duration: 0.1s;
+    background-color: rgb(188, 147, 81);
+  }
+  
+  .button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 5px;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 30px 80px white;
+  }
+  
+  .button:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 5px;
+    left: 0;
+    top:0;
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  .button:active {
+    top: 1px;
+  }
+  
+#About_Me{
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f5e6c3;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #d4bc91;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #c4ac81;
+    }
+}
+
+  
+  
+  
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/
+/************************************************************************************/

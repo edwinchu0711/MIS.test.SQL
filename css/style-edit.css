@@ -1,0 +1,450 @@
+html{
+    scroll-behavior:smooth; /*讓我網頁內的滑動平順(連結)*/
+}
+body {
+    font-family: 'Roboto',sans-serif;   
+    /* background-image:url("img/background.webp") ; */
+    background-color: #e0ccae;
+    background: linear-gradient(to right, #f8d9ab, #fdeed7);
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+h1, h2, h3, h4, h5, h6 {
+  /* font-family: 'Roboto',sans-serif !important; */
+  letter-spacing: 4px;
+}
+.w3-image{
+    border: 2px solid #ffffff;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    
+}
+
+#preloader{
+    background: #FFFFFF url(../img/preloader.webp) no-repeat center;
+    background-size: 20%;
+    top: -20%;
+    height: 120vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 100;
+    opacity: 1;
+    transition: none;
+    @media (max-width:600px) {
+        background-size: 50%;
+    }
+    @media (max-width:400px) {
+        background-size: 60%;
+    }
+}
+
+
+
+
+.allCard {
+    background: #ffffff;
+    border-radius: 16px;
+
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+  }
+  .allCard:hover {
+    transform: translateY(-5px) !important;
+  }
+  .elegant-border {
+    border: 2px solid #8B7355;
+    border-radius: 8px;
+    position: relative;
+    margin-top: 20px !important; /* 確保有足夠空間顯示星星 */
+    background: #fcf9f4;
+  }
+  .p-6{
+    padding : 2rem;
+    background-color: #fcf9f4;
+    border-radius: 8px;
+  } 
+  .elegant-border::before {
+    content: '★' !important;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fcf9f4; /* 確保與網頁背景色完全相同 */
+    padding: 0 10px;
+    color: #8B7355;
+    font-size: 20px; /* 使用具體的像素大小 */
+    line-height: 1;
+    z-index: 1; /* 確保星星在最上層 */
+  }
+  
+  /* 如果星星還是看不到，可以嘗試使用實體字符 */
+  .elegant-border::before {
+    content: '\2605'; /* Unicode 星星符號 */
+  }
+
+
+
+/* General Form Styling */
+.edit-dish, .submit-dish {
+    justify-content: center;
+    max-width: 800px;
+    margin: 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto',sans-serif;
+}
+
+.submit-dish{
+    margin-bottom: 50px;
+}
+
+
+#accordion h3, .edit-dish textarea{
+    font-family: 'Roboto',sans-serif;
+}
+
+
+.submit-dish h2, .edit-dish h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    background: #fff;
+    box-sizing: border-box;
+    resize: vertical; /* Allow only vertical resizing */
+}
+
+
+input[type="file"]{
+    width: 100%; /* Ensures it takes up the full width of the container */
+    padding: 5px; /* Adjust padding for better spacing */
+    font-size: 0.9rem; /* Smaller font size if necessary */
+    overflow: hidden; /* Ensures content doesn't spill */
+    text-overflow: ellipsis; /* Truncates text with ellipsis */
+    white-space: nowrap; /* Prevents text wrapping */
+    box-sizing: border-box; /* Includes padding and borders in width */
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #ddbb88;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #d2a664;
+    color: black;
+}
+
+/* Error and Success Messages */
+.error {
+    color: #d9534f;
+    background: #f8d7da;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.success {
+    color: #28a745;
+    background: #d4edda;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .edit-dish {
+        padding: 15px;
+        box-shadow: none;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+        font-size: 0.9rem;
+    }
+
+    button[type="submit"] {
+        font-size: 0.9rem;
+    }
+}
+
+
+.edit-preview-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content:center;
+    gap: 40px;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+
+.edit-dish {
+    flex: 3;
+    min-width: 300px;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.preview-dish {
+    flex: 5;
+    min-width: 300px;
+    max-width: 900px;
+    padding: 20px;
+    background-color: #fcf9f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.preview-dish {
+    display: flex;
+    flex-direction: row;
+    background-color: #fcf9f4;
+    text-align: left;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it uses full width */
+}
+
+.preview-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px; /* Space between text and image */
+    width: 100%; /* Ensure full width usage */
+}
+
+.preview-text {
+    flex: 9; /* Allows more space for text */
+    min-width: 0; /* Prevent overflow */
+    padding : 0px 16px;
+}
+
+.preview-image {
+    flex: 4; /* Smaller space for image */
+    max-width: 50%; /* Ensure image doesn't take too much space */
+    padding : 0px 16px;
+}
+
+#new_photo_preview {
+    width: 100%; /* Ensure image fills its container */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+
+/* CSS for Add Tip Button
+#add-tip-button {
+    background-color: #E0D3AF; Warm brown tone
+    color: #5C4033; White text
+    padding: 5px 5px; Padding
+    border: none; No border
+    border-radius: 4px; Rounded corners
+    cursor: pointer; Pointer cursor on hover
+    font-size: 16px; Font size
+    font-weight: bold; Bold text
+    transition: background-color 0.3s ease; Transition for hover effect
+    margin-bottom: 30px;
+} */
+
+/* #add-tip-button:hover {
+    background-color: #E3A57B; Lighter warm brown on hover
+    color: black; Change text color on hover
+} */
+
+
+/* CSS for Add Tip Button */
+#add-tip-button {
+    background: none; /* 移除背景色 */
+    color: #ddbb88; /* 文字顏色，保留暖棕色調 */
+    padding: 0; /* 移除多餘的內邊距 */
+    border: none; /* 移除邊框 */
+    cursor: pointer; /* 滑鼠懸停變成手形 */
+    font-size: 15px; /* 調整字體大小 */
+    font-weight: bold; /* 粗體字 */
+    text-decoration: underline; /* 加底線 */
+    transition: color 0.3s ease; /* 添加顏色變化的過渡效果 */
+    margin-bottom: 30px; /* 底部間距 */
+    float: right;
+}
+
+#add-tip-button:hover {
+    color: #d2a664; /* 懸停時文字變淺 */
+    text-decoration: underline; /* 懸停時保持底線 */
+}
+
+
+
+/* CSS for File Input */
+input[type="file"] {
+    display: none; /* Hide default file input */
+}
+
+label[for="dish_photo"] {
+    background-color: #ddbb88; /* Earthy brown tone */
+    color: white; /* White text */
+    padding: 3px 3px; /* Padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    display: inline-block; /* Inline block for styling */
+    transition: background-color 0.3s ease; /* Transition for hover effect */
+}
+
+label[for="dish_photo"]:hover {
+    background-color: #d2a664; /* Lighter earthy brown on hover */
+    color: black; /* Change text color on hover */
+}
+
+
+#eating-tips-container textarea {
+    margin-bottom: 15px; /* 調整上下間距 */
+    width: 100%; /* 確保寬度一致 */
+    padding: 8px; /* 添加內部間距 */
+    box-sizing: border-box; /* 確保padding不會影響整體寬度 */
+}
+
+/* 如果想要最後一個textarea底部不要有margin */
+#eating-tips-container textarea:last-child {
+    margin-bottom: 0;
+}
+
+.edittitle {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+
+/* #eating-tips-container {
+    overflow-y: auto; 
+    width: 100%;
+    max-height: 350px; 
+}
+
+#eating-tips-container::-webkit-scrollbar {
+    width: 6px; 
+    height: 6px; 
+}
+
+#eating-tips-container::-webkit-scrollbar-track {
+    background: #f5e6c3; 
+    border-radius: 3px;
+}
+
+#eating-tips-container::-webkit-scrollbar-thumb {
+    background: #d4bc91; 
+    border-radius: 3px; 
+}
+
+#eating-tips-container::-webkit-scrollbar-thumb:hover {
+    background: #c4ac81; 
+}
+
+@media (max-width: 550px) {
+    #eating-tips-container {
+        display: flex; 
+        width: 100%; 
+    }
+} */
+
+/* Style for both textareas */
+textarea {
+    overflow-y: auto;
+    width: 100%; /* Adjust as needed */
+    max-height: 350px; /* Limit height for scrolling */
+    font-size: 16px; /* Optional: Match font size */
+    line-height: 1.5; /* Optional: Improve readability */
+    padding: 10px;
+    border: 1px solid #d4bc91;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    resize: none; /* Prevent resizing */
+}
+
+/* Custom scrollbar style */
+textarea::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: #f5e6c3;
+    border-radius: 3px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: #d4bc91;
+    border-radius: 3px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #c4ac81;
+}
+
+
+.phototitle {
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.photocontainer{
+    display: flex; /* 使用 Flexbox */
+    align-items: baseline; /* 垂直居中對齊 */
+    gap: 10px; /* 兩元素之間的間距 */
+}

@@ -1,0 +1,812 @@
+/* Navbar *********************************************************************************************************/
+/* 滑到Menu 顯示圖片 */
+.w3-top {
+    a {
+        letter-spacing: 3px !important;
+    }
+}
+#navbar{
+    z-index: 10;
+}
+#top-title{
+    width: 180px;
+    border-radius: 10px;
+    
+    img{
+        width:180px;
+        top:3px;
+        padding-top: 2px;
+        padding-right: 12px;
+           
+    }
+}
+#top-title:hover {
+    background-color: #d1a15a !important;
+    cursor: pointer;
+}
+#navbar_right{
+    right:0;
+    height: auto;
+    width: auto;
+}
+
+.hover-image {
+    position: fixed;
+    width: 90px;
+    height: 100px;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s ease, left 0.1s ease-out, top 0.1s ease-out;
+}
+
+.w3-bar-item:hover .hover-image {
+    display: block;
+}
+
+#user-button {
+    letter-spacing: 1.4px;
+}
+
+.menu-list, .user-list, .type-list { /* menu的清單範圍 */
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    z-index: 2;
+    background-color: #f5e3c3;
+    margin-right: 20px;
+    margin-left: 20px;
+    visibility: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+    transition: clip-path 0.5s ease, visibility 0.3s ease;
+    letter-spacing: 1.8px;
+}
+#menu-list{
+    overflow-y: auto;
+    max-height: 350px;
+    a{
+        min-height: fit-content;
+        max-width: 280px;
+    }
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f5e6c3;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #d4bc91;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #c4ac81;
+    }
+}
+
+
+#menu-list.show, #user-list.show ,#type-list.show {
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+#menu-button-area, #user-button-area , #type-button-area {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 0px;
+    align-items: center;
+}
+
+#small-state-button {
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 50px !important;
+    display: none;
+    border-radius: 5px;
+}
+
+#small-search-button{
+    align-self: left;
+    width: 50px;
+    display: none;
+    border-radius: 5px !important;
+}
+
+#small-search-img{
+    height:22.5px;
+}
+@media (max-width: 780px) {
+    #small-state-button {
+        display: flex;
+    }
+    #small-search-button{
+        display: flex;
+    }
+}
+
+#more-list {
+    height: 40px;
+    width: 50px;
+    margin: 0px;
+    align-self: center;
+    border-radius: 5px !important;
+}
+
+/* 修改後的 small-list 相關樣式 */
+#small-list {
+    top: 56px;
+    width: 250px;
+    height: 70%;
+    position: absolute;
+    /* display: flex !important;
+    flex-direction: column; */
+    right: -250px;
+    background-color: #f5e3c3;
+    display: block;
+    z-index: 20;
+    transition: right 0.3s ease-in-out;
+}
+
+#small-list.show {
+    right: 0;
+}
+
+#small-menu-button {
+    background-color: rgb(245, 227, 195);
+    width: 250px;
+    z-index: 20;
+}
+#small-menu-button:hover{
+    background-color:#f0d4a7;
+}
+
+
+#small-menu-list {
+    width: 250px;
+    position: relative;
+    background-color: #ffeed0;
+    z-index: 20;
+    overflow-y: auto;
+    opacity: 0; /* 可選：使其完全透明 */
+    border: none;
+    overflow-x: hidden;
+    max-height: 0px;
+    transition: max-height 0.3s ease-in-out;
+
+    /* 捲軸樣式設定 */
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f5e6c3;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #d4bc91;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #c4ac81;
+    }
+}
+
+#small-menu-list.show {
+    max-height: 280px;
+    border: 1px solid #ccccccca
+}
+#small-list a{
+    width: 100%;
+}
+#small-menu-list > a {
+    width: 250px;
+    z-index: 20;
+}
+
+@media (min-width: 780.01px) {
+    #small-list {
+        display: none !important;
+    }
+}
+
+#small-contact, #small-login {
+    background-color: #f5e3c3;
+    z-index: 20;
+}
+
+#small-contact-button, #small-login-button {
+    width: 250px;
+    z-index: 20;
+}
+
+
+
+
+
+
+
+
+
+
+#small-user-list {
+    width: 250px;
+    position: relative;
+    background-color: #ffeed0;
+    z-index: 20;
+    overflow-y: auto;
+    border: none;
+    overflow-x: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+
+    /* 捲軸樣式設定 */
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f5e6c3;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #d4bc91;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #c4ac81;
+    }
+}
+
+#small-user-list.show {
+    border: 1px solid #ccccccba;
+    max-height: 280px;
+}
+
+#small-user-list > a {
+    width: 250px;
+    z-index: 20;
+}
+#small-user-button{
+    width:100%;
+    letter-spacing : 3px !important;
+}
+
+
+
+
+
+
+
+#small-type-list {
+    width: 250px;
+    position: relative;
+    background-color: #ffeed0;
+    z-index: 20;
+    overflow-y: auto;
+    border: none;
+    overflow-x: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+
+    /* 捲軸樣式設定 */
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f5e6c3;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #d4bc91;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #c4ac81;
+    }
+}
+
+#small-type-list.show {
+    max-height: 280px;
+    border: 1px solid #cccccccd;
+}
+
+#small-type-list > a {
+    width: 250px;
+    z-index: 20;
+}
+#small-type-button{
+    width:100%;
+    background-color: #f5e3c3;
+
+}
+#small-type-button:hover{
+    background-color:#f0d4a7;
+    cursor: pointer;
+}
+#type-button{
+    letter-spacing : 3px !important;
+}
+
+#search-button{
+    width: 50px;
+}
+
+#search-img{
+    height:22.5px;
+}
+
+/* #search-spare{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 70%;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+} */
+/* 搜尋遮罩層 */
+
+body.locked {
+    position: fixed; /* 鎖住滾動 */
+    overflow-y: scroll; /* 保留滾動條 */
+    width: 100%;
+}
+
+/* 搜尋區塊主容器 */
+#search-spare {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 水平置中 */
+    align-items: center; /* 垂直置中 */
+    display: none;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    padding-top: 60px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.search-container {
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: slideDown 0.4s ease-out;
+    max-width: 1200px;
+    max-height: 90vh;
+}
+
+#search-in {
+    /* height: 200px; 根據你的需求調整高度 */
+    z-index: 2;
+    background: white;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.search-header {
+    width: 100%;
+    padding: 25px 30px;
+    padding-bottom: 0px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    align-items: center; /* 垂直置中 */
+    justify-content: center; /* 水平置中 */
+    position: relative;
+}
+
+#search-input {
+    width: 80%;
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+    background-color: #f8f8f8;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #d1a15a;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(209, 161, 90, 0.15);
+}
+
+.search-close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background: none;
+    background-color: whitesmoke;
+    border: none;
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-close-btn:hover {
+    background-color: #c29451;
+    color: #333;
+    transform: rotate(90deg);
+}
+
+/* 過濾器容器樣式 */
+.filter-container {
+    width: 100%;
+    position: relative;
+    padding: 0 20px;
+    margin: 15px 0;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 5px;
+}
+
+.filter-tags-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    
+    padding-bottom: 12px;
+}
+
+.filter-tags {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 5px 0;
+    width: max-content;
+}
+
+/* Webkit 捲軸樣式 */
+.filter-tags-wrapper::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 6px;
+}
+
+.filter-tags-wrapper::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 100px;
+}
+
+.filter-tags-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(209, 161, 95, 0.3);
+    border-radius: 100px;
+    border: none;
+}
+
+.filter-tags-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(209, 161, 95, 0.5);
+}
+
+/* Firefox 捲軸樣式 */
+.filter-tags-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(209, 161, 95, 0.3) rgba(0, 0, 0, 0.03);
+}
+
+.filter-tag {
+    padding: 6px 16px;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    color: #666;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    white-space: nowrap;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.filter-tag:hover {
+    background-color: #f0e6d8;
+}
+
+.filter-tag.active {
+    background-color: #d1a15f;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.filter-tag.active:hover {
+    background-color: #c29451;
+}
+
+ #search-gap{
+    height: 1px;
+    margin: 1px;
+    width: 100%;
+} 
+
+/* 搜尋結果區域 */
+#search-results-click {
+    flex: 1 1 auto;
+    position: relative;
+    display: flex;
+    overflow-y: scroll;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    
+    flex-direction: column;
+}
+
+.search-content {
+    width: 100%;
+    height: 100%;
+    
+    padding: 20px;
+}
+
+.search-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #d1a15a;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* 搜尋結果樣式 */
+.search-result-item {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f0f0f0;
+    
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.search-result-image {
+    width: 75%;
+    aspect-ratio: 468 / 600;
+    height: auto;
+    max-height: 800px;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.search-output-img {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.search-result-info {
+    margin: 30px 10%;
+    color: #333;
+}
+
+.search-result-info p {
+    color: #555;
+    margin: 12px 0;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.search-result-info .description,
+.search-result-info .eating-tips {
+    background-color: #f8f8f8;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin: 12px 0;
+    border-left: 4px solid #d1a15a;
+    transition: all 0.3s ease;
+}
+
+.search-result-info .description:hover,
+.search-result-info .eating-tips:hover {
+    background-color: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.highlight {
+    background: linear-gradient(120deg, rgba(209, 161, 90, 0.2) 0%, rgba(209, 161, 90, 0.3) 100%);
+    padding: 0 4px;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #000;
+    animation: highlightFade 0.5s ease-in-out;
+}
+
+/* 動畫效果 */
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes highlightFade {
+    from {
+        background-color: rgba(209, 161, 90, 0.5);
+    }
+    to {
+        background-color: rgba(209, 161, 90, 0.2);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 響應式設計 */
+@media (min-width: 600px) {
+    .search-result-item a {
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+    }
+
+    .search-result-image {
+        width: 300px;
+        flex-shrink: 0;
+        margin: 0;
+        aspect-ratio: 3/4;
+    }
+
+    .search-result-info {
+        flex: 1;
+        margin: 0;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-container {
+        padding: 0 15px;
+    }
+    
+    .filter-tag {
+        padding: 5px 14px;
+        font-size: 13px;
+    }
+    
+    .filter-tags {
+        gap: 6px;
+    }
+
+    #search-results-click {
+        padding: 10px;
+    }
+    
+    .search-content {
+        padding: 15px;
+    }
+}
+
+/* 捲軸樣式 */
+#search-results-click::-webkit-scrollbar {
+    width: 8px;
+}
+
+#search-results-click::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+#search-results-click::-webkit-scrollbar-thumb {
+    background: #d1a15a;
+    border-radius: 4px;
+}
+
+.no-results{
+    text-align: center;
+}
+
+/* 讓菜單項目顯示在一行，並且菜品名稱與箭頭按鈕分開 */
+.w3-bar-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+/* 向下箭頭按鈕樣式 */
+.toggle-preview {
+    color: #d1a15a;
+    background: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    position: absolute;
+    right: 10px; /* 確保箭頭在菜單項目的最右側 */
+    top: 50%; /* 垂直居中 */
+    transform: translateY(-50%);
+}
+
+/* 預覽圖片區域樣式 */
+.image-preview {
+    margin-top: 10px;
+    height: 180px;
+    text-align: center;
+    display: none; /* 初始隱藏 */
+    justify-items: center;
+    align-items: center;
+    
+}
+
+.image-preview .menu-preview-img {
+    width: 150px; /* 控制圖片大小 */
+    height: 170px;
+    border-radius: 5px;
+    margin-bottom: 7px;
+    background-size: cover; /* 圖片填滿容器，並保持比例 */
+    background-position: center; /* 圖片居中 */
+    background-repeat: no-repeat; /* 防止圖片重複 */
+}
+
+.toggle-preview{
+    padding-left: 20px;
+}
+
+.navtitle {
+    font-weight: bold!important;
+}
+

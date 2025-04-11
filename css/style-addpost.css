@@ -1,0 +1,259 @@
+/* General Form Styling */
+.edit-dish, .submit-dish {
+    justify-content: center;
+    max-width: 800px;
+    margin: 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto',sans-serif;
+}
+
+.submit-dish{
+    margin-bottom: 50px;
+}
+
+
+#accordion h3, .edit-dish textarea{
+    font-family: 'Roboto',sans-serif;
+}
+
+
+.submit-dish h2, .edit-dish h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+form#addpost-form p {
+    display:contents;
+    position: relative;
+    margin-bottom: 8px;
+    width: auto;
+    width: auto;
+    margin-block-start:0px;
+    margin-block-end:0px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    background: #fff;
+    box-sizing: border-box;
+    resize: vertical; /* Allow only vertical resizing */
+}
+
+
+input[type="file"]{
+    width: 100%; /* Ensures it takes up the full width of the container */
+    padding: 5px; /* Adjust padding for better spacing */
+    font-size: 0.9rem; /* Smaller font size if necessary */
+    overflow: hidden; /* Ensures content doesn't spill */
+    text-overflow: ellipsis; /* Truncates text with ellipsis */
+    white-space: nowrap; /* Prevents text wrapping */
+    box-sizing: border-box; /* Includes padding and borders in width */
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #ddbb88;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #d2a664;
+    color: rgb(0, 0, 0);
+}
+
+/* Error and Success Messages */
+.error {
+    color: #d9534f;
+    background: #f8d7da;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.success {
+    color: #28a745;
+    background: #d4edda;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .edit-dish {
+        padding: 15px;
+        box-shadow: none;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+        font-size: 0.9rem;
+    }
+
+    button[type="submit"] {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* CSS for Add Tip Button
+#add-tip-button {
+    background-color: #BEA87F; Warm brown tone
+    color: white; White text
+    padding: 10px 10px; Padding
+    border: none; No border
+    border-radius: 4px; Rounded corners
+    cursor: pointer; Pointer cursor on hover
+    font-size: 10px; Font size
+    font-weight: bold; Bold text
+    transition: background-color 0.3s ease; Transition for hover effect
+    margin-bottom: 30px;
+}
+
+#add-tip-button:hover {
+    background-color: #F5DD9D; Lighter warm brown on hover
+    color: black; Change text color on hover
+} */
+
+
+
+/* CSS for Add Tip Button */
+#add-tip-button {
+    background: none; /* 移除背景色 */
+    color: #ddbb88; /* 文字顏色，保留暖棕色調 */
+    padding: 0; /* 移除多餘的內邊距 */
+    border: none; /* 移除邊框 */
+    cursor: pointer; /* 滑鼠懸停變成手形 */
+    font-size: 15px; /* 調整字體大小 */
+    font-weight: bold; /* 粗體字 */
+    text-decoration: underline; /* 加底線 */
+    transition: color 0.3s ease; /* 添加顏色變化的過渡效果 */
+    margin-bottom: 30px; /* 底部間距 */
+    float: right;
+}
+
+#add-tip-button:hover {
+    color: #d2a664; /* 懸停時文字變淺 */
+    text-decoration: underline; /* 懸停時保持底線 */
+}
+
+
+
+
+/* CSS for File Input */
+input[type="file"] {
+    display: none; /* Hide default file input */
+}
+
+/* label[for="dish_photo"] {
+    background-color: #ddbb88;  Earthy brown tone 
+    color: white;  White text 
+    padding: 8px 8px;  Padding 
+    border-radius: 4px;  Rounded corners 
+    cursor: pointer;  Pointer cursor on hover 
+    font-size: 1rem;
+    font-weight: bold;  Bold text 
+    display: inline-block;  Inline block for styling 
+    transition: background-color 0.3s ease;  Transition for hover effect 
+}
+
+label[for="dish_photo"]:hover {
+    background-color: #d2a664;  Lighter earthy brown on hover 
+    color: white; Change text color on hover 
+} */
+
+
+/* dish_photo 標籤樣式 */
+label[for="dish_photo"] {
+    background: none; /* 移除背景色 */
+    color: #ddbb88; /* 文字顏色 */
+    padding: 0; /* 移除內邊距 */
+    border: none; /* 移除邊框 */
+    cursor: pointer; /* 滑鼠指針變化 */
+    font-size: 17px; /* 字體大小 */
+    font-weight: bold; /* 粗體 */
+    text-decoration: underline; /* 加底線 */
+    transition: color 0.3s ease; /* 平滑過渡效果 */
+    float: right; /* 置右 */
+    margin-bottom: 30px;
+}
+
+/* 滑鼠懸停效果 */
+label[for="dish_photo"]:hover {
+    color: #d2a664; /* 懸停時的文字顏色 */
+}
+
+
+
+#eating-tips-container textarea {
+    margin-bottom: 15px; /* 調整上下間距 */
+    width: 100%; /* 確保寬度一致 */
+    padding: 8px; /* 添加內部間距 */
+    box-sizing: border-box; /* 確保padding不會影響整體寬度 */
+}
+
+/* 如果想要最後一個textarea底部不要有margin */
+#eating-tips-container textarea:last-child {
+    margin-bottom: 0;
+}
+
+
+.addtitle {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.addphoto {
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.photocontainer{
+    display: flex; /* 使用 Flexbox */
+    align-items: baseline; /* 垂直居中對齊 */
+    gap: 10px; /* 兩元素之間的間距 */
+}
+
+.pretit{
+    font-weight: bold;
+}

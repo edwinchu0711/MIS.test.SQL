@@ -1,0 +1,218 @@
+/* others */
+
+html{
+
+    /* scroll-behavior:smooth; 讓我網頁內的滑動平順(連結) */
+
+    height: 100%;
+
+}
+
+body {
+
+
+
+    height: 100vh;
+
+    font-family: 'Roboto',sans-serif;   
+
+    /* background-image:url("/../imgbackground.webp") ; */
+
+    background-color: #e0ccae;
+
+    background: linear-gradient(to right, #f8d9ab, #fdeed7);
+
+    background-size: cover;
+
+    display: flex;
+
+    flex-direction: column;
+
+    
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+  font-family: 'Roboto',sans-serif !important;
+
+  letter-spacing: 4px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* preloader *********************************************************************************************************/
+
+/* preloader */
+
+#preloader{
+
+    background: #FFFFFF url(../img/preloader.webp) no-repeat center;
+
+    background-size: 20%;
+
+    height: 100%;
+
+    width: 100%;
+
+    position: fixed;
+
+    z-index: 100;
+
+    opacity: 1;
+
+    transition: none;
+
+    @media (max-width:600px) {
+        background-size: 50%;
+    }
+    @media (max-width:400px) {
+        background-size: 60%;
+    }
+}
+
+
+header{
+    position: relative;
+}
+.image-border {
+    height: 10px;
+    width: 100%;
+    background-color: rgb(173, 111, 53);
+    border: none;
+}
+#header-titleBG{
+    position: absolute;
+    bottom:0;
+    left:50%;
+    transform: translate(-50%,0);
+    
+    width: 50vw;
+    height: 30%;
+    /* aspect-ratio: 192 / 108;  */
+}
+#header-title{
+    position: absolute;
+    bottom:0;
+    left:50%;
+    color : rgb(248, 247, 247);
+    font-weight:900;
+    transform: translate(-50%,8%);
+}
+
+
+
+
+
+/* arrow圖片 回到最頂端 */
+
+#arrow-box{
+
+    position: fixed;
+
+    height: 70px;
+
+    width: 70px;
+
+    bottom: 20px;
+
+    right: 10px;  
+
+}
+
+#arrow{
+
+    filter:drop-shadow(0px 0px 10px rgba(0,0,0,.25)) contrast(200%);
+
+    height: 70px;
+
+    width: 70px;
+
+    bottom: 20px;
+
+    
+
+}
+
+#arrow.show{
+
+    visibility: visible;
+
+    opacity: 1;
+
+    transition: visibility 0.7s ease, opacity 0.7s ease;
+
+}
+
+#arrow.hidden{
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    transition: visibility 0.4s ease, opacity 0.4s ease;
+
+}
+
+a#arrow-box:hover{
+
+    cursor:auto;
+
+    
+
+}
+
+#arrow:hover{
+
+    filter:drop-shadow(0px 0px 10px rgba(0,0,0,.6)) contrast(200%);
+
+    cursor: pointer;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/

@@ -1,0 +1,261 @@
+/* others */
+
+html{
+
+    /* scroll-behavior:smooth; 讓我網頁內的滑動平順(連結) */
+
+    height: 100%;
+
+}
+
+body {
+
+
+
+    height: 100vh;
+
+    font-family: 'Roboto',sans-serif;   
+
+    /* background-image:url("/../imgbackground.webp") ; */
+
+    background-color: #e0ccae;
+
+    background: linear-gradient(to right, #f8d9ab, #fdeed7);
+
+    background-size: cover;
+
+    display: flex;
+
+    flex-direction: column;
+
+    
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+  font-family: 'Roboto',sans-serif !important;
+
+  letter-spacing: 4px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* preloader *********************************************************************************************************/
+
+/* preloader */
+
+#preloader{
+
+    background: #FFFFFF url(../img/preloader.webp) no-repeat center;
+
+    background-size: 20%;
+
+    height: 100%;
+
+    width: 100%;
+
+    position: fixed;
+
+    z-index: 100;
+
+    opacity: 1;
+
+    transition: none;
+    @media (max-width:600px) {
+        background-size: 50%;
+    }
+    @media (max-width:400px) {
+        background-size: 60%;
+    }
+
+}
+
+#header{
+
+    
+
+    position: relative;
+
+}
+
+#header-img{
+
+    background-size: cover; 
+
+    background-position: center;
+
+    /* height: 350px; */
+
+}
+
+#profile-content{
+
+    display: flex;
+
+    gap : 5%;
+
+    row-gap: 20px;
+
+}
+
+#profileImg{
+
+    border-radius: 50%;
+
+    background-color: white;
+
+    background-size: cover;
+
+    
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+
+    position: absolute;
+
+
+
+
+
+}
+
+#introduction{
+
+    margin-right: 20px;
+
+    letter-spacing: 1px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* arrow圖片 回到最頂端 */
+
+#arrow-box{
+
+    position: fixed;
+
+    z-index: 11;
+
+    height: 70px;
+
+    width: 70px;
+
+    bottom: 20px;
+
+    right: 10px;  
+
+}
+
+#arrow{
+
+    filter:drop-shadow(0px 0px 10px rgba(0,0,0,.25)) contrast(200%);
+
+    height: 70px;
+
+    width: 70px;
+
+    bottom: 20px;
+
+    
+
+}
+
+#arrow.show{
+
+    visibility: visible;
+
+    opacity: 1;
+
+    transition: visibility 0.7s ease, opacity 0.7s ease;
+
+}
+
+#arrow.hidden{
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    transition: visibility 0.4s ease, opacity 0.4s ease;
+
+}
+
+a#arrow-box:hover{
+
+    cursor:auto;
+
+    
+
+}
+
+#arrow:hover{
+
+    filter:drop-shadow(0px 0px 10px rgba(0,0,0,.6)) contrast(200%);
+
+    cursor: pointer;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/
+
+/************************************************************************************/

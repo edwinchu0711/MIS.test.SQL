@@ -1,0 +1,117 @@
+
+
+/*****************************************bottom-fixed********************************/
+
+#bottom-fixed{
+
+    
+
+    position: fixed;
+
+    z-index: 11;
+
+    display: flex;
+
+    flex-direction: column;
+
+    bottom: 0px;
+
+    width: 100%;
+
+}
+
+
+
+/* cookie */
+
+#cookie{
+
+    position: relative;
+
+    display: flex;
+
+    bottom: 0;
+
+    width: 100%;
+
+    /* background-color: #ddbb88; */
+
+    background: linear-gradient(to right, #ddbb88, #ffffff); /* 從奶茶色到白色的漸層 */
+
+    justify-items:space-between;
+
+}
+
+
+
+#cookie_p{
+
+    user-select: none;
+
+    font-size: 20px;
+
+    margin: 13px 20px;
+
+}
+
+
+
+#cookie_button{
+
+    float:right;
+
+    align-self: center;
+
+    margin: 10px;
+
+    margin-left: auto;
+
+   
+
+}
+
+
+
+#cookie_yes{
+
+    width:55px;
+
+    color: black;
+
+    background-color:rgb(255, 128, 0);
+
+    padding: 3px;
+
+}
+
+
+
+#cookie_yes:hover{
+
+    background-color:rgb(223, 100, 0);
+
+}
+
+
+
+
+
+#cookie_no{
+
+    width:55px;
+
+    color: black;
+
+    background-color:rgb(250, 250, 250);
+
+    padding: 3px;
+
+}
+
+
+
+#cookie_no:hover{
+
+    background-color:rgb(195, 194, 194) ;
+
+}

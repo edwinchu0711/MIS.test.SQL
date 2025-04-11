@@ -1,0 +1,236 @@
+.hide_left , .hide_right , .hide_up{  /*讓文章原本隱藏*/
+    visibility: hidden;
+}
+.hide_left{
+    transform: translateX(-50);
+    opacity: 0;
+}
+.hide_right{
+    transform: translateX(50);
+    opacity: 0;
+}
+
+hr.post-hr{
+    margin-top: 45px;
+    margin-bottom: 45px;
+    border-top-width: 2.5px;
+}
+
+
+/************************makeover*************************************/
+.allCard {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+  }
+  .allCard:hover {
+    transform: translateY(-5px) !important;
+  }
+  .elegant-border {
+    border: 2px solid #8B7355;
+    border-radius: 8px;
+    position: relative;
+    margin-top: 20px !important; /* 確保有足夠空間顯示星星 */
+    background: #fcf9f4;
+  }
+  .p-6{
+    padding : 2rem;
+    background-color: #fcf9f4;
+    border-radius: 8px;
+  } 
+  .elegant-border::before {
+    content: '★' !important;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fcf9f4; /* 確保與網頁背景色完全相同 */
+    padding: 0 10px;
+    color: #8B7355;
+    font-size: 20px; /* 使用具體的像素大小 */
+    line-height: 1;
+    z-index: 1; /* 確保星星在最上層 */
+  }
+  
+  /* 如果星星還是看不到，可以嘗試使用實體字符 */
+  .elegant-border::before {
+    content: '\2605'; /* Unicode 星星符號 */
+  }
+  
+  hr.star-divider::before {
+    content: none; 
+  }
+  
+  hr.star-divider::after {
+    content: none;
+  }
+  
+  /* 確保 post 容器有適當的間距 */
+  .post {
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* zoom *********************************************************************************************************/
+/* 圖片放大 */
+.zoom, .image-container {
+    transition: transform 0.2s; /* 設定過渡效果，當滑鼠移入時，圖片會在0.2秒內縮放 */
+  }
+  
+.zoom:hover , .image-container:hover {
+    transform: scale(1.1); /* 當滑鼠移入時，將圖片放大1.1倍 */
+}
+.w3-image{
+    border: 2px solid #ffffff;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    
+}
+#header-img{
+    border: none;
+    width:100%
+}
+
+.image-container {
+    
+    position: relative;
+
+    perspective: 1000px;
+    display: inline-block;
+}
+
+.image-container img {
+
+    position: absolute;
+    max-width: calc(100% - 48px);
+
+
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    transform-origin: center center; 
+    object-fit: cover; 
+}
+
+.post-more{
+    display: flex;
+    justify-content: center;
+    gap:5%;
+    align-items: center;
+
+}
+
+
+.w3-padding-large .postby{
+    font-size: 20px !important;
+}
+
+div.new_posts p.nopostbro {
+    text-align: center !important;
+    font-size: 1.5rem !important;
+    color: #555 !important;
+    background-color: #f9f9f9 !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    margin: 40px auto !important;
+    max-width: 600px !important;
+}
+
+
+.username-link {
+    color: #2196F3 !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
+}
+
+.username-link:hover {
+    color: #0d47a1 !important;
+    text-decoration: underline !important;
+}
+
+
+/* 按鈕容器樣式 */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* 自定義按鈕基本樣式 */
+.custom-btn {
+    border-radius: 4px !important;
+    transition: all 0.3s ease !important;
+    padding: 6px 14px !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 80px !important;
+    text-align: center !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #fff !important;
+}
+
+/* Edit按鈕特定樣式 */
+.edit-btn {
+    background-color: #927550 !important; /* 溫暖的褐色 */
+    box-shadow: 0 1px 3px rgba(146, 117, 80, 0.2) !important;
+}
+
+.edit-btn:hover {
+    background-color: #806647 !important;
+}
+
+/* Delete按鈕特定樣式 */
+.delete-btn {
+    background-color: #B25D5D !important; /* 柔和的紅褐色 */
+    box-shadow: 0 1px 3px rgba(178, 93, 93, 0.2) !important;
+}
+
+.delete-btn:hover {
+    background-color: #9B4F4F !important;
+}
+
+.dishtopic {
+    font-weight: bold!important;
+    /* font-style: italic; */
+}
+
+.tiptopic {
+    font-weight: bold!important;
+    font-style: italic!important;
+}
+
+div.new_posts > p.nopostbro {
+    text-align: center !important;
+    font-size: 1.5rem !important;
+    color: #ffffff !important;
+    font-weight: bolder;
+    background-color: #ddbb88 !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    margin: 40px auto !important;
+    max-width: 600px !important;
+}
