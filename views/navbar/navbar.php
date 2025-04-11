@@ -6,8 +6,6 @@ $parentFolderName = basename(dirname($currentPath));
 // 將母資料夾名稱存為變數
 $navbarFolder = $parentFolderName;
 
-
-
 if (!defined('BASE_PATH')) {
     $currentPath = $_SERVER['PHP_SELF'];
     $depth = substr_count($currentPath, '/') - 1;
@@ -48,12 +46,19 @@ $small_search = '<div id= "small-search-button" class=" w3-right w3-bar-item w3-
 $AllPost = '<a href="'.BASE_PATH.'views/classification/allpost.php" class="w3-bar-item w3-button navtitle">All Post</a>';
 $title ='<a href="'.BASE_PATH.'views/index/index.php"><div id="top-title" class="w3-padding-small w3-bar-item" onclick="backtoindex()"><img src="'.BASE_PATH.'img/BaChi%20Foodblog.webp"></div></a>';
 
-if (isset($result) && $result->num_rows > 0 && $navbarFolder == 'classification') {
-    if ($result && $result->num_rows > 0) {
+// PostgreSQL 兼容：檢查 $result 是否為 PDOStatement 物件，並且有資料
+if (isset($result) && $result instanceof PDOStatement && $navbarFolder == 'classification') {
+    // 取得結果數量
+    $result_count = $result->rowCount();
+    
+    if ($result_count > 0) {
         $menu = '<div id="menu-button-area" class="w3-bar-item w3-button">
                     <a href="#menu" class="w3-bar-item w3-button navtitle" id="menu-button">Menu</a>
                     <div class="menu-list" id="menu-list">';
-        while ($row = $result->fetch_assoc()) {
+        
+        // 取得所有結果
+        $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($rows as $row) {
             $encoded_path = implode('/', array_map('rawurlencode', explode('/', $row['photo_path'])));
             $menu .= '<a href="#' . $row['dish_name'] . $row['id'] . '" class="w3-bar-item w3-button w3-card w3-padding-large">
                         ' . $row['dish_name'] . '
@@ -62,31 +67,33 @@ if (isset($result) && $result->num_rows > 0 && $navbarFolder == 'classification'
                       <div class="image-preview" style="display:none;">
                         <div class="menu-preview-img " style="background-image: url('.BASE_PATH.$encoded_path.')">
                         </div>
-
                       </div>';
         }
         $menu .= '</div></div>';
-        $result->data_seek(0);
+        
+        // 重新執行查詢以獲取相同的結果集
+        $result = $pdo->query("SELECT * FROM posts WHERE id IN (" . implode(',', array_column($rows, 'id')) . ")");
     }
     
-    if ($result && $result->num_rows > 0) {
+    if ($result_count > 0) {
         $small_menu = '<div id="small-menu">
             <div class="w3-bar-item w3-button navtitle" id="small-menu-button">Menu</div>
             <div id="small-menu-list">';
-        while ($row = $result->fetch_assoc()) {
-        $small_menu .= '<a href="#'.$row['dish_name'].$row['id'].'" class="w3-bar-item w3-button w3-card w3-padding-large">
+        
+        // 取得所有結果
+        $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($rows as $row) {
+            $small_menu .= '<a href="#'.$row['dish_name'].$row['id'].'" class="w3-bar-item w3-button w3-card w3-padding-large">
                     '.$row['dish_name'].'
-                </a>'  ;
+                </a>';
         }
         $small_menu .= '</div>
         </div>';
-        $result->data_seek(0);
+        
+        // 重新執行查詢以獲取相同的結果集
+        $result = $pdo->query("SELECT * FROM posts WHERE id IN (" . implode(',', array_column($rows, 'id')) . ")");
     }
-    
 }
-
-
-
 
 $type = '<div id="type-button-area" class="w3-bar-item w3-button">
             <div class="w3-bar-item w3-button navtitle" id="type-button">Food Type</div>
@@ -148,10 +155,6 @@ $small_type = '<div id="small-type">
             </div>
             </div>';
 
-
-
-
-
 $Small_AllPost = '<a href="'.BASE_PATH.'views/classification/allpost.php" class="w3-bar-item w3-button navtitle">All Post</a>';
 if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
     $user = '<div id="user-button-area" class="w3-bar-item w3-button">
@@ -172,13 +175,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
                     </div>';
     }
 
-
 // *************************************以上為每個按鈕分類***************************************************************/
-
-
-
-
-
 
 /************************輸出的不分 (用$data) ********************************/
 $data = '<div class="w3-top" id="navbar">'; //****************最大的div********************/
@@ -209,7 +206,7 @@ $data .= '<button id ="small-state-button" class="w3-right w3-bar-item w3-button
             }
             $data .= '<div id = "small-list">
                 '.$Small_AllPost;
-                if ($navbarFolder == 'classification'){
+                if ($navbarFolder == 'classification' && isset($small_menu)){
                     $data .= $small_menu;
                 }
                 $data .= $small_type;
@@ -218,19 +215,15 @@ $data .= '<button id ="small-state-button" class="w3-right w3-bar-item w3-button
                     $data .= $small_user;
                 } 
                 else {
-                    $data .= $small_login ;
+                    $data .= $small_login;
                 }
                 $data .= '</div></div></div>'; //****************將所有div閉合********************/
-if (isset($result)){
-    $result->data_seek(0);  
-}
 
-// $search_spare = '<div id="search-spare">
-//     <div class="search-container">
-//         <input type="text" id="search-input" placeholder="搜尋文章...">
-//         <div class="search-results"></div>
-//     </div>
-// </div>';
+// 如果使用 PostgreSQL，重新準備結果集
+if (isset($result) && $result instanceof PDOStatement) {
+    // 重新執行查詢
+    $result = $pdo->query("SELECT * FROM posts");
+}
 
 $search_spare = '<div id="search-spare">
     <div class="search-container"> 
@@ -270,5 +263,4 @@ echo $data;
 if ($parentFolderName != 'index'){
     echo $search_spare; // 確保輸出搜尋視窗
 }
-
 ?>
