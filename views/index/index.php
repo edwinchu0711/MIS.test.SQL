@@ -6,6 +6,18 @@
   }
   session_start();
   include BASE_PATH.'views/post/database.php';
+  // 檢查 $conn 是否可用
+if (!isset($conn) || $conn === null) {
+    // 重新初始化連接
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/db_connect.php';
+    
+    // 如果仍然不可用，重新創建連接
+    if (!isset($conn) || $conn === null) {
+        // 重新初始化
+        DatabaseConnection::initialize();
+        $conn = DatabaseConnection::getConn();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
