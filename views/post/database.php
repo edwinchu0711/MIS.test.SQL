@@ -5,10 +5,10 @@
 // $database = 'if0_37642403_message_board'; // 資料庫名稱
 
 
-$host = 'sql109.infinityfree.com'; // MySQL 主機
-$username = 'if0_38718843'; // MySQL 使用者名稱
-$password = 'hb4F1GuhFfBTBJ'; // MySQL 密碼
-$database = 'if0_38718843_MIS'; // 資料庫名稱
+$host = 'sql3.freesqldatabase.com'; // MySQL 主機
+$username = 'sql3772510'; // MySQL 使用者名稱
+$password = 'lvbf8yFYyX'; // MySQL 密碼
+$database = 'sql3772510'; // 資料庫名稱
 
 $conn = new mysqli($host, $username, $password, $database);
 $conn->set_charset("utf8mb4");
