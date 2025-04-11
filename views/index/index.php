@@ -6,18 +6,6 @@
   }
   session_start();
   include BASE_PATH.'views/post/database.php';
-  // 檢查 $conn 是否可用
-if (!isset($conn) || $conn === null) {
-    // 重新初始化連接
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/db_connect.php';
-    
-    // 如果仍然不可用，重新創建連接
-    if (!isset($conn) || $conn === null) {
-        // 重新初始化
-        DatabaseConnection::initialize();
-        $conn = DatabaseConnection::getConn();
-    }
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -268,29 +256,84 @@ if (!isset($conn) || $conn === null) {
     <div class="row"><div class="el"></div></div>
 
     <?php
-      $result = $conn->query("SELECT * FROM posts ORDER BY created_at DESC limit 12");
-      if ($result->num_rows > 0) {
-        echo '<div id = "food_marquee">';
-          echo '<div id="NewPost"></div>';
-          echo '<div id="marquee_title">Latest Posts</div>';
-          echo '<div id = "all_cards">';
-          while ($row = $result->fetch_assoc()) {
-            $encoded_path = implode('/', array_map('rawurlencode', explode('/', $row['photo_path'])));
-            echo '<a href="'.BASE_PATH.'views/classification/newpost.php#'.$row['dish_name'].$row['id'].'" style="text-decoration: none;">'; // 使用動態連結
-            echo '<div class="dish_card" id="'.$row['dish_name'].$row['id'].'">
-                    <div class="dish_img" style="background-image: url('.BASE_PATH . $encoded_path .');"></div>
-                    <div class="dish_name"><p class="dish_name_p">'.$row['dish_name'].'</p></div>
-                  </div>';
-            echo '</a>';
-          }
-          echo '</div></div>';
-          echo '<div id="left_right_button">
-                <img src="'.BASE_PATH.'img/left_button.webp" id = "left_button" class="marquee_change_button">
-                  <img src="'.BASE_PATH.'img/right_button.webp" id = "right_button" class="marquee_change_button">
-                </div>';
-          echo '</div>';
-      }
-    ?>
+// 直接在這裡建立資料庫連接，不依賴外部 $conn
+try {
+    // 建立 PDO 連接到 PostgreSQL
+    $host = "dpg-cvsa2fc9c44c739t4uk0-a.oregon-postgres.render.com";
+    $dbname = "mydb_d092";
+    $user = "myuser";
+    $password = "2BeqE2rDtkKP5pTUWRSKWOT6eiZDcj5a";
+    $port = "5432";
+    
+    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
+    $pdo = new PDO($dsn, $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // 執行查詢 (以下是原始的查詢，請確保它與您實際需要的查詢相符)
+    $stmt = $pdo->query("SELECT * FROM posts ORDER BY created_at DESC limit 12");
+    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // 創建一個模擬的 $result 對象，以便與原始代碼兼容
+    class MockResult {
+        private $data = [];
+        private $position = 0;
+        
+        public function __construct($data) {
+            $this->data = $data;
+            $this->num_rows = count($data);
+        }
+        
+        public function fetch_assoc() {
+            if ($this->position < count($this->data)) {
+                return $this->data[$this->position++];
+            }
+            return null;
+        }
+    }
+    
+    // 創建模擬的結果對象
+    $result = new MockResult($posts);
+    
+    // 現在 $result 可以像原來的 mysqli 結果一樣使用
+    // $result->num_rows 和 $result->fetch_assoc() 都可以正常工作
+    
+} catch (PDOException $e) {
+    // 創建一個空的結果對象，避免後續代碼出錯
+    class EmptyResult {
+        public $num_rows = 0;
+        public function fetch_assoc() { return null; }
+    }
+    $result = new EmptyResult();
+    
+    // 記錄錯誤
+    error_log("資料庫錯誤: " . $e->getMessage());
+    echo "<!-- 資料庫連接或查詢錯誤: " . $e->getMessage() . " -->";
+}
+
+// 以下是原始代碼，現在可以正常使用 $result
+if ($result->num_rows > 0) {
+    echo '<div id = "food_marquee">';
+    echo '<div id="NewPost"></div>';
+    echo '<div id="marquee_title">Latest Posts</div>';
+    echo '<div id = "all_cards">';
+    while ($row = $result->fetch_assoc()) {
+        $encoded_path = implode('/', array_map('rawurlencode', explode('/', $row['photo_path'])));
+        echo '<a href="'.BASE_PATH.'views/classification/newpost.php#'.$row['dish_name'].$row['id'].'" style="text-decoration: none;">'; // 使用動態連結
+        echo '<div class="dish_card" id="'.$row['dish_name'].$row['id'].'">
+                <div class="dish_img" style="background-image: url('.BASE_PATH . $encoded_path .');"></div>
+                <div class="dish_name"><p class="dish_name_p">'.$row['dish_name'].'</p></div>
+              </div>';
+        echo '</a>';
+    }
+    echo '</div></div>';
+    echo '<div id="left_right_button">
+            <img src="'.BASE_PATH.'img/left_button.webp" id = "left_button" class="marquee_change_button">
+            <img src="'.BASE_PATH.'img/right_button.webp" id = "right_button" class="marquee_change_button">
+          </div>';
+    echo '</div>';
+}
+?>
+
   </div>
 <!-- search -->
 
