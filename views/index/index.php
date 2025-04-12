@@ -6,7 +6,7 @@
   }
   session_start();
   $timestamp = time();
-  include BASE_PATH.'views/post/database.php?n='.$timestap ;
+  include BASE_PATH.'views/post/database.php' ;
 ?>
 <!DOCTYPE html>
 <html>
