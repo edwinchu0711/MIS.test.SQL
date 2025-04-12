@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: MIS
+    env: php
+    buildCommand: |
+      composer install
+      # 安裝 PHP 擴展
+      apt-get update && apt-get install -y libsqlite3-dev
+      docker-php-ext-install pdo_sqlite
+    startCommand: php -S 0.0.0.0:$PORT -t public
+    envVars:
+      - key: PHP_INI_SCAN_DIR
+        value: /etc/php/8.0/cli/conf.d:/opt/render/project/php-ini
