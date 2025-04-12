@@ -5,7 +5,8 @@
     define('BASE_PATH', str_repeat('../', $depth));
   }
   session_start();
-  include BASE_PATH.'views/post/database.php';
+  $timestamp = time();
+  include BASE_PATH.'views/post/database.php?n='.$timestap ;
 ?>
 <!DOCTYPE html>
 <html>
