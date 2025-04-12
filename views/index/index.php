@@ -270,6 +270,7 @@ try {
     
     // 創建一個模擬的 $result 對象，以便與原始代碼兼容
     class MockResult {
+        public $num_rows;
         private $data = [];
         private $position = 0;
         
