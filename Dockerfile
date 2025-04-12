@@ -18,3 +18,17 @@ COPY . /var/www/html/
 
 # 設定正確的權限
 RUN chown -R www-data:www-data /var/www/html/
+
+
+FROM php:8.1-apache
+
+# 安裝 SQLite 擴展
+RUN apt-get update && apt-get install -y libsqlite3-dev \
+    && docker-php-ext-install pdo_sqlite
+
+# 複製應用程式代碼
+COPY . /var/www/html/
+
+# 設置權限
+RUN chown -R www-data:www-data /var/www/html
+
