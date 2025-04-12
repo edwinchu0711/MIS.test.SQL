@@ -46,52 +46,57 @@ $small_search = '<div id= "small-search-button" class=" w3-right w3-bar-item w3-
 $AllPost = '<a href="'.BASE_PATH.'views/classification/allpost.php" class="w3-bar-item w3-button navtitle">All Post</a>';
 $title ='<a href="'.BASE_PATH.'views/index/index.php"><div id="top-title" class="w3-padding-small w3-bar-item" onclick="backtoindex()"><img src="'.BASE_PATH.'img/BaChi%20Foodblog.webp"></div></a>';
 
-// PostgreSQL 兼容：檢查 $result 是否為 PDOStatement 物件，並且有資料
-if (isset($result) && $result instanceof PDOStatement && $navbarFolder == 'classification') {
-    // 取得結果數量
-    $result_count = $result->rowCount();
-    
-    if ($result_count > 0) {
-        $menu = '<div id="menu-button-area" class="w3-bar-item w3-button">
-                    <a href="#menu" class="w3-bar-item w3-button navtitle" id="menu-button">Menu</a>
-                    <div class="menu-list" id="menu-list">';
+// 使用已存在的 $conn 連接查詢資料
+if ($navbarFolder == 'classification') {
+    try {
+        // 執行查詢
+        $stmt = $result;
         
-        // 取得所有結果
-        $rows = $result->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($rows as $row) {
-            $encoded_path = implode('/', array_map('rawurlencode', explode('/', $row['photo_path'])));
-            $menu .= '<a href="#' . $row['dish_name'] . $row['id'] . '" class="w3-bar-item w3-button w3-card w3-padding-large">
-                        ' . $row['dish_name'] . '
-                        <button class="toggle-preview" data-img="' . BASE_PATH . $row['photo_path'] . '">&#8744;</button>
-                      </a>
-                      <div class="image-preview" style="display:none;">
-                        <div class="menu-preview-img " style="background-image: url('.BASE_PATH.$encoded_path.')">
-                        </div>
-                      </div>';
+        // 檢查是否有資料
+        if ($stmt && $stmt->rowCount() > 0) {
+            $menu = '<div id="menu-button-area" class="w3-bar-item w3-button">
+                        <a href="#menu" class="w3-bar-item w3-button navtitle" id="menu-button">Menu</a>
+                        <div class="menu-list" id="menu-list">';
+            
+            // 取得所有結果
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($rows as $row) {
+                $encoded_path = implode('/', array_map('rawurlencode', explode('/', $row['photo_path'])));
+                $menu .= '<a href="#' . $row['dish_name'] . $row['id'] . '" class="w3-bar-item w3-button w3-card w3-padding-large">
+                            ' . $row['dish_name'] . '
+                            <button class="toggle-preview" data-img="' . BASE_PATH . $row['photo_path'] . '">&#8744;</button>
+                          </a>
+                          <div class="image-preview" style="display:none;">
+                            <div class="menu-preview-img " style="background-image: url('.BASE_PATH.$encoded_path.')">
+                            </div>
+                          </div>';
+            }
+            $menu .= '</div></div>';
+            
+            // 重新執行查詢以獲取相同的結果集
+            $stmt2 = $conn->query("SELECT * FROM posts WHERE id IN (" . implode(',', array_column($rows, 'id')) . ")");
+            
+            $small_menu = '<div id="small-menu">
+                <div class="w3-bar-item w3-button navtitle" id="small-menu-button">Menu</div>
+                <div id="small-menu-list">';
+            
+            // 取得所有結果
+            $rows2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($rows2 as $row) {
+                $small_menu .= '<a href="#'.$row['dish_name'].$row['id'].'" class="w3-bar-item w3-button w3-card w3-padding-large">
+                        '.$row['dish_name'].'
+                    </a>';
+            }
+            $small_menu .= '</div>
+            </div>';
+            
+            // 重新準備結果集以供後續使用
+            $result = $conn->query("SELECT * FROM posts");
         }
-        $menu .= '</div></div>';
-        
-        // 重新執行查詢以獲取相同的結果集
-        $result = $pdo->query("SELECT * FROM posts WHERE id IN (" . implode(',', array_column($rows, 'id')) . ")");
-    }
-    
-    if ($result_count > 0) {
-        $small_menu = '<div id="small-menu">
-            <div class="w3-bar-item w3-button navtitle" id="small-menu-button">Menu</div>
-            <div id="small-menu-list">';
-        
-        // 取得所有結果
-        $rows = $result->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($rows as $row) {
-            $small_menu .= '<a href="#'.$row['dish_name'].$row['id'].'" class="w3-bar-item w3-button w3-card w3-padding-large">
-                    '.$row['dish_name'].'
-                </a>';
-        }
-        $small_menu .= '</div>
-        </div>';
-        
-        // 重新執行查詢以獲取相同的結果集
-        $result = $pdo->query("SELECT * FROM posts WHERE id IN (" . implode(',', array_column($rows, 'id')) . ")");
+    } catch (PDOException $e) {
+        // 記錄錯誤
+        error_log("資料庫錯誤: " . $e->getMessage());
+        echo "<!-- 資料庫連接或查詢錯誤: " . $e->getMessage() . " -->";
     }
 }
 
@@ -219,10 +224,10 @@ $data .= '<button id ="small-state-button" class="w3-right w3-bar-item w3-button
                 }
                 $data .= '</div></div></div>'; //****************將所有div閉合********************/
 
-// 如果使用 PostgreSQL，重新準備結果集
+// 如果需要重新準備結果集
 if (isset($result) && $result instanceof PDOStatement) {
     // 重新執行查詢
-    $result = $pdo->query("SELECT * FROM posts");
+    $result = $conn->query("SELECT * FROM posts");
 }
 
 $search_spare = '<div id="search-spare">

@@ -34,9 +34,32 @@ if (!defined('menu_ASSETS_LOADED')) {
 <?php } ?>
 
 <?php
-if (!$result) {
-    die("Query failed: " . $conn->error);
+// 創建一個模擬的結果對象，以便與原始代碼兼容
+class SQLiteResult {
+    private $data = [];
+    public $num_rows;
+    private $position = 0;
+    
+    public function __construct($stmt) {
+        $this->data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $this->num_rows = count($this->data);
+        $this->position = 0;
+    }
+    
+    public function fetch_assoc() {
+        if ($this->position < count($this->data)) {
+            return $this->data[$this->position++];
+        }
+        return null;
+    }
+    
+    public function data_seek($position) {
+        $this->position = $position;
+        return true;
+    }
 }
+$result = new SQLiteResult($stmt);
+
 if ($result->num_rows > 0) {
     $totalRows = $result->num_rows;
     $currentRow = 1;
@@ -57,8 +80,4 @@ if ($result->num_rows > 0) {
     echo '</div></div></div></div>';
     $result->data_seek(0);  
 }
-
 ?>
-
-
-

@@ -13,7 +13,7 @@
 <title>BaChi FoodBlog</title>
 <meta charset="UTF-8">
 <!--------------------------------PWA------------------------------>
-<link rel="manifest" href="./manifest.json">
+<link rel="manifest" id ="manifest" href="./manifest.json">
 <meta name="theme-color" content="#000000">
 <!-- iOS 支援 -->
 <link rel="apple-touch-icon" href="<?php echo BASE_PATH ; ?>img/cookie.png">
@@ -257,20 +257,15 @@
 
     <?php
 // 直接在這裡建立資料庫連接，不依賴外部 $conn
+
 try {
-    // 建立 PDO 連接到 PostgreSQL
-    $host = "dpg-cvsa2fc9c44c739t4uk0-a.oregon-postgres.render.com";
-    $dbname = "mydb_d092";
-    $user = "myuser";
-    $password = "2BeqE2rDtkKP5pTUWRSKWOT6eiZDcj5a";
-    $port = "5432";
+    // SQLite資料庫連接
+    $db_path = BASE_PATH.'MIS.db3'; // 請替換為您的db3檔案路徑
+    $conn = new PDO("sqlite:$db_path");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
-    $pdo = new PDO($dsn, $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // 執行查詢 (以下是原始的查詢，請確保它與您實際需要的查詢相符)
-    $stmt = $pdo->query("SELECT * FROM posts ORDER BY created_at DESC limit 12");
+    // 執行查詢 (SQLite語法與PostgreSQL基本相同)
+    $stmt = $conn->query("SELECT * FROM posts ORDER BY created_at DESC limit 12");
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     // 創建一個模擬的 $result 對象，以便與原始代碼兼容
@@ -333,6 +328,7 @@ if ($result->num_rows > 0) {
     echo '</div>';
 }
 ?>
+
 
   </div>
 <!-- search -->

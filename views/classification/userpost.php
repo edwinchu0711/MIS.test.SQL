@@ -68,27 +68,30 @@
 <!-- Header -->
 <?php
   if (isset($_GET['username'])) {
-      $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-      $stmt->bind_param("s", $_GET['username']);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
-            $username = $row['username'];
-            $photoPath = $row['photoPath'];
-            $backgroundPath = $row['BGpath'];
-            $ig = $row['ig'];
-            $phoneNumber = $row['phoneNumber'];
-            $introduction = $row['Introduction'];
+      try {
+          $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+          $stmt->execute([$_GET['username']]);
+          
+          // 使用 PDO 的 fetch 方法取得結果
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+          
+          if ($row) {
+              $username = $row['username'];
+              $photoPath = $row['photoPath'];
+              $backgroundPath = $row['BGpath'];
+              $ig = $row['ig'];
+              $phoneNumber = $row['phoneNumber'];
+              $introduction = $row['Introduction'];
           }
-      } 
-      $stmt->close();
-  } 
-  
-  
-
-
+          
+          // PDO 語句會自動關閉，不需要明確的 close()
+      } catch (PDOException $e) {
+          // 處理可能的錯誤
+          echo "資料庫錯誤: " . $e->getMessage();
+      }
+  }
 ?>
+
 <header class="w3-display-container w3-content w3-wide" style="max-width:100%;" id="header">
   <div class="w3-image" id="header-img" style="background-image: url('<?php echo BASE_PATH . $backgroundPath.'?t='.time(); ?>');" alt="User background"></div>
   <div  id = "profileImg" style="background-image: url('<?php echo BASE_PATH . $photoPath.'?t='.time(); ?>')"></div>
@@ -110,18 +113,10 @@
 if (isset($_SESSION['id']) && isset($_SESSION['username']) && $_SESSION['username'] == $_GET['username']) {
   include BASE_PATH.'views/post/addpost.php'; //新增貼文
 }
-  $result = $conn->query("SELECT * FROM posts WHERE username='$userpost' ORDER BY created_at DESC");
-  include BASE_PATH.'views/menu-area/menu.php' 
-?>
-
-
-
-
-
-
-
-  <?php
-  
+  $stmt = $conn->prepare("SELECT * FROM posts WHERE username = ? ORDER BY created_at DESC");
+  $stmt->execute([$userpost]);
+  $result = $stmt; // 在 PDO 中，$stmt 本身就可以用於後續的讀取操作
+  include BASE_PATH.'views/menu-area/menu.php' ;
   include BASE_PATH.'views/post/readpost.php'; //讀取貼文
   
 

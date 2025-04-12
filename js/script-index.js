@@ -10,11 +10,9 @@ var marquee_gap = 0.03;
 preloader();
 
 function pageload() {
-
-
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js')
+          navigator.serviceWorker.register('/service-worker.js')
             .then(registration => {
               console.log('ServiceWorker 註冊成功:', registration.scope);
             })
@@ -23,10 +21,7 @@ function pageload() {
             });
         });
       }
-
-
-
-
+      
     document.getElementById("hidebody").style.visibility="visible";
     food_marquee();
     setupHoverEffects();

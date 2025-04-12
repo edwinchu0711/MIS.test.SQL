@@ -1,22 +1,14 @@
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <?php
     if (!defined('BASE_PATH')) {
         $currentPath = $_SERVER['PHP_SELF'];
         $depth = substr_count($currentPath, '/') - 1;
         define('BASE_PATH', str_repeat('../', $depth));
     }
-    include BASE_PATH.'views/post/database.php' ;
+    include BASE_PATH.'views/post/database.php';
 
-  
-
-  if (!$result) {
-      die("Query failed: " . $conn->error);
-  }
-if (!defined('readpost_ASSETS_LOADED')) {
-    define('readpost_ASSETS_LOADED', true);
-}
-    ?>
+    
+?>
     <!-- readpost CSS -->
     <link id="readpost-css" rel="stylesheet" href="<?php echo BASE_PATH; ?>css/style-readpost.css">
     <!-- readpost JavaScript -->
